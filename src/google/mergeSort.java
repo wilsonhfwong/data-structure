@@ -1,6 +1,12 @@
 package google;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 
 public class mergeSort {
 
@@ -41,9 +47,11 @@ public class mergeSort {
 		int resultIndex = 0;
 		int leftIndex = 0;
 		int rightIndex = 0;
-		while(leftIndex<resultLeft.length || rightIndex < resultRight.length) {
-			int leftValue = leftIndex < resultLeft.length? resultLeft[leftIndex] : 999999;
-			int rightValue = rightIndex < resultRight.length? resultRight[rightIndex] : 999999;
+		
+		while(leftIndex<resultLeft.length && rightIndex < resultRight.length) {
+			int leftValue = resultLeft[leftIndex];
+			int rightValue = resultRight[rightIndex];
+			
 			
 			System.out.println("comparing..."+leftValue+" <> "+ rightValue);
 			if(rightValue < leftValue) {
@@ -55,7 +63,18 @@ public class mergeSort {
 				leftIndex++;
 			}
 		}
-
+		
+		while(leftIndex < resultLeft.length)
+		{
+			result[resultIndex++] = resultLeft[leftIndex++];
+		
+		}
+		
+		while(rightIndex<resultRight.length)
+		{
+			result[resultIndex++] = resultRight[rightIndex++];
+		
+		}		
 		
 		System.out.println("Merging result... "+ Arrays.toString(result));
 		
@@ -70,11 +89,10 @@ public class mergeSort {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arrayA = {9, 8, 7, 6, 5, 4, 3};
+		int[] arrayA = {9, 8, 0, 0, 0, 1, 2, 4};
 		int[] result = sort(arrayA);
-		for(int k: result) {
-			System.out.print(k+",");
-		}
+		System.out.println("Final result..."+ Arrays.toString(result));
+
 
 	}
 
